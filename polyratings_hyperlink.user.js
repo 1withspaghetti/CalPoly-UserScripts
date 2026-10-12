@@ -36,6 +36,12 @@ function findInstructors() {
         if (dd.querySelector("span")) instructors.push(dd.querySelector("span"))
         else instructors.push(dd)
     })
+    // Find row entries
+    document.querySelectorAll("div[role=row] > div > div:nth-of-type(6) > div > div:nth-of-type(1) div[role=cell]:not([data-instructor-searched])").forEach(el => {
+        el.setAttribute("data-instructor-searched", "");
+        if (el.querySelectorAll("span").length > 0) instructors.push(...el.querySelectorAll("span").values().toArray())
+        else instructors.push(el)
+    })
 
     return instructors;
 }
